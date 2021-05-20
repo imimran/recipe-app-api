@@ -42,4 +42,7 @@ docker build .
 create Django  Project: 
 docker-compose run app sh -c "python -m django startproject app ."
 
+test command:
+docker-compose run app sh -c "python manage.py test"
+
 
