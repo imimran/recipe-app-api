@@ -1,0 +1,45 @@
+
+
+package list:
+    pip list
+
+install Django:
+    pip install django
+
+Django Version check
+    python -m django --version 
+
+Create Django Project on windows:
+    python -m django startproject crud
+
+run Server:
+    python manage.py runserver
+
+create App:
+    python manage.py startapp users
+
+migrate DB:
+    python manage.py migrate        
+
+install postgres package:
+    pip install psycopg2
+
+after create model:
+    python manage.py makemigrations   
+
+Form Package:
+    pip install django-crispy-forms     
+
+
+
+
+
+Docker Command:
+
+Config;
+docker build .   
+
+create Django  Project: 
+docker-compose run app sh -c "python -m django startproject app ."
+
+
