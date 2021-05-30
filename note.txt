@@ -31,7 +31,10 @@ after create model:
 Form Package:
     pip install django-crispy-forms     
 
-
+Create Environment Variable:
+    pip install python-decouple
+    then import it settings.py file
+    from decouple import config
 
 
 
