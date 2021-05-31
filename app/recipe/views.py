@@ -60,10 +60,11 @@ class RecipeViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.RecipeSerializer
     authentication_classes = (TokenAuthentication,)
     permission_classes = (IsAuthenticated,)
-    filter_backends = [filters.SearchFilter]
+    filter_backends = [filters.SearchFilter, filters.OrderingFilter]
     # filter_backends = [DjangoFilterBackend]
     # filterset_fields = ['price']
     search_fields = ['title']
+    ordering_fields = ['title']
 
     def get_queryset(self):
         """Return Recipe for the current authenticated user only"""
