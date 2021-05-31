@@ -39,6 +39,9 @@ Create Environment Variable:
 For Image:
     pip install Pillow
 
+for filter Data:
+    pip install django-filter 
+
 
 Docker Command:
 

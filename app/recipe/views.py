@@ -5,6 +5,8 @@ from rest_framework.response import Response
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.serializers import Serializer
+from rest_framework import filters
+# from django_filters.rest_framework import DjangoFilterBackend
 
 from core.models import Tag, Ingredient, Recipe
 
@@ -20,6 +22,7 @@ class TagViewSet(viewsets.GenericViewSet,
     permission_classes = (IsAuthenticated,)
     queryset = Tag.objects.all()
     serializer_class = serializers.TagSerializer
+    filterset_fields = ['name']
 
     def get_queryset(self):
         """ Return objects for current auth user only """
@@ -38,6 +41,8 @@ class IngredientViewSet(viewsets.GenericViewSet,
     permission_classes = (IsAuthenticated,)
     queryset = Ingredient.objects.all()
     serializer_class = serializers.IngredientSerializer
+    # filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['name']
 
     def get_queryset(self):
         """Return objects for the current authenticated user only"""
@@ -55,6 +60,10 @@ class RecipeViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.RecipeSerializer
     authentication_classes = (TokenAuthentication,)
     permission_classes = (IsAuthenticated,)
+    filter_backends = [filters.SearchFilter]
+    # filter_backends = [DjangoFilterBackend]
+    # filterset_fields = ['price']
+    search_fields = ['title']
 
     def get_queryset(self):
         """Return Recipe for the current authenticated user only"""

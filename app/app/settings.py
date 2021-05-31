@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'core',
     'users',
     'recipe',
+    'django_filters',
 
 ]
 
@@ -149,3 +150,7 @@ MEDIA_ROOT = MEDIA_DIR
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'core.User'
+
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
+}
