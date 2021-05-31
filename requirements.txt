@@ -1,3 +1,5 @@
 Django>=3.2.3,<3.3.0
 djangorestframework>=3.12.4,<3.13.0
 flake8>=3.6.0,<3.7.0
+python-decouple>=3.4,<3.5
+Pillow>=8.2.0,<8.3.0

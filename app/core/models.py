@@ -1,10 +1,19 @@
+import uuid
+import os
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, \
                                        PermissionsMixin
 from django.conf import settings
 
 
-# Create your models here.
+def recipe_image_path(instance, filename):
+    """ Genereate image path for recipe"""
+    ext = filename.split('.')[-1]
+    filename = f'{uuid.uuid4()}.{ext}'
+
+    return os.path.join('uploads/recipe/', filename)
+
+
 class UserManager(BaseUserManager):
 
     def create_user(self, email, password=None, **extra_fields):
@@ -60,4 +69,18 @@ class Ingredient(models.Model):
     )
 
     def __str__(self):
-        return self.name        
+        return self.name 
+
+
+class Recipe(models.Model):
+    """ Recipe Model """
+    title = models.CharField(max_length=255)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    price = models.DecimalField(max_digits=10, decimal_places=2, default=00.00)
+    time_minute = models.DecimalField(max_digits=5, decimal_places=0, blank=False)
+    ingredients = models.ManyToManyField(Ingredient)
+    tags = models.ManyToManyField(Tag)
+    image = models.ImageField(null=True, upload_to=recipe_image_path)
+
+    def __str__(self) -> str:
+        return self.title + " " + self.price                  

@@ -36,6 +36,8 @@ Create Environment Variable:
     then import it settings.py file
     from decouple import config
 
+For Image:
+    pip install Pillow
 
 
 Docker Command:
